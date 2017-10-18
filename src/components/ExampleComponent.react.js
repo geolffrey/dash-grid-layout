@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import { exampleDiv } from './ExampleComponent.css';
+
 /**
  * ExampleComponent is an example component.
  * It takes a property, `label`, and
@@ -13,7 +15,7 @@ export default class ExampleComponent extends Component {
         const {id, label, setProps, value} = this.props;
 
         return (
-            <div id={id}>
+            <div id={id} style={exampleDiv}>
                 ExampleComponent: {label}
                 <input
                     value={value}
