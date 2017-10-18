@@ -15,6 +15,10 @@ module.exports = _.merge({}, testCfg, {
                 test: /src\/.*\.js$/,
                 exclude: /(test|node_modules)\//,
                 loader: archDevRequire.resolve('isparta-loader')
+            },
+            {
+              test: /\.css/,
+              loaders: [require.resolve('style-loader'), require.resolve('css-loader')]
             }
         ]
     }
