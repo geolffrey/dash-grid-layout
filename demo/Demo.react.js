@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ExampleComponent} from '../src';
+import {GridLayoutComponent} from '../src';
 
 class Demo extends Component {
     constructor() {
@@ -16,10 +16,7 @@ class Demo extends Component {
 
                 <hr/>
                 <h2>ExampleComponent</h2>
-                <ExampleComponent
-                    label="This is an example label"
-                    value={this.state.value}
-                    setProps={newProps => this.setState({value: newProps.value})}
+                <GridLayoutComponent
                 />
                 <hr/>
             </div>
