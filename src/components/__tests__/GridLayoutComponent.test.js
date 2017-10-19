@@ -29,4 +29,42 @@ describe('GridLayoutComponent', () => {
     expect(component.children()).to.have.length(len);
   });
 
+  it('Renders when a correct layout array is provided', () => {
+    const children = [
+      (<div key={1}>Test</div>),
+      (<div key={2}>Test</div>)
+    ];
+    const layout = [
+      { x: 1, y: 1, w: 3, h: 1 },
+      { x: 1, y: 2, w: 2, h: 2 }
+    ];
+
+    const component = shallow(
+      <GridLayoutComponent
+        layout={layout}
+      >
+        { children }
+      </GridLayoutComponent>
+    );
+
+    expect(component).to.be.ok;
+  });
+
+  it('Does not render when an incorrect layout is provided', () => {
+    const children = [
+      (<div key={1}>Test</div>),
+      (<div key={2}>Test</div>)
+    ];
+    const layout = [
+      { wrong: 1, y: 1, w: 3, h: 1 },
+      { x: 1, wrong: 2, w: 2, h: 2 }
+    ];
+
+    expect(() => (<GridLayoutComponent
+        layout={layout}
+      >
+        { children }
+      </GridLayoutComponent>
+    )).to.throw();
+  });
 });
