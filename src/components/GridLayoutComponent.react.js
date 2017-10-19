@@ -2,11 +2,28 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactGridLayout from 'react-grid-layout';
 
+import './GridLayoutComponent.css';
+
 class GridLayoutComponent extends Component {
+  /**
+   * By default, Dash wraps children in an element, obfuscating the key.
+   * If a child has no key, this function npacks the children so that `key`
+   * is exposed and the layout can be used
+   */
+  unpackChildren(children) {
+    if(children) {
+      if(Array.isArray(children)) {
+        return children.map(child => child.key === null ? (child.props.children || child) : child);
+      } else if(!children.key && children.props) {
+        return (children.props.children || children);
+      }
+    }
+
+    return children;
+  }
+
   render() {
-    const {
-      children
-    } = this.props;
+    const children = this.unpackChildren(this.props.children);
 
     return (
       <ReactGridLayout

@@ -13,8 +13,11 @@
 	},
 	"homepage": "https://github.com/FlightDataServices/dash-grid-layout",
 	"scripts": {
-		"copy-lib": "copyfiles -u 1 lib/* dash_grid_layout",
+		"build-dev": "builder run clean-lib && builder run extract-metadata && webpack -w --config=config/webpack/webpack.config.dev.js",
+		"build-dev-lib": "webpack -w --config=config/webpack/webpack.config.dev.js",
+		"build-dist": "builder run clean-lib && builder run extract-metadata && webpack --config=config/webpack/webpack.config.dist.js",
 		"demo": "builder run demo",
+		"copy-lib": "copyfiles -u 1 lib/* dash_grid_layout",
 		"install-local": "npm run copy-lib && python setup.py install",
 		"prepublish": "npm test && builder run build-dist && npm run copy-lib",
 		"publish-all": "npm publish && python setup.py sdist upload",

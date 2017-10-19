@@ -6,20 +6,17 @@ app = dash.Dash('')
 
 app.scripts.config.serve_locally = True
 
-app.layout = html.Div([
-    dash_grid_layout.ExampleComponent(
-        id='input',
-        value='my-value',
-        label='my-label'
-    ),
-    html.Div(id='output')
-])
-
-@app.callback(
-	dash.dependencies.Output('output', 'children'),
-	[dash.dependencies.Input('input', 'value')])
-def display_output(value):
-    return 'You have entered {}'.format(value)
+app.layout = dash_grid_layout.GridLayoutComponent(
+    [
+        html.Div('Hello', key=0),
+        html.Div('World', key=1)
+    ],
+    cols=2,
+    layout=[
+        { 'x': 0, 'y': 0, 'w': 1, 'h': 1, 'i': '0' },
+        { 'x': 1, 'y': 0, 'w': 1, 'h': 1, 'i': '1' }
+    ]
+)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
