@@ -6,7 +6,7 @@ app = dash.Dash('')
 
 app.scripts.config.serve_locally = True
 
-app.layout = dash_grid_layout.GridLayoutComponent(
+app.layout = dash_grid_layout.GridLayout(
     [
         html.Div('Hello', key=0),
         html.Div('World', key=1)

@@ -1,10 +1,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import GridLayoutComponent from '../GridLayoutComponent.react';
+import GridLayout from '../GridLayout.react';
 
-describe('GridLayoutComponent', () => {
+describe('GridLayout', () => {
   it('Renders using default values', () => {
-    const component = shallow(<GridLayoutComponent />);
+    const component = shallow(<GridLayout />);
     expect(component).to.be.ok;
   });
 
@@ -20,9 +20,9 @@ describe('GridLayoutComponent', () => {
     }
 
     const component = shallow(
-      <GridLayoutComponent>
+      <GridLayout>
         { children }
-      </GridLayoutComponent>
+      </GridLayout>
     );
 
     expect(component).to.be.ok;
@@ -40,11 +40,11 @@ describe('GridLayoutComponent', () => {
     ];
 
     const component = shallow(
-      <GridLayoutComponent
+      <GridLayout
         layout={layout}
       >
         { children }
-      </GridLayoutComponent>
+      </GridLayout>
     );
 
     expect(component).to.be.ok;
@@ -60,11 +60,11 @@ describe('GridLayoutComponent', () => {
       { x: 1, wrong: 2, w: 2, h: 2 }
     ];
 
-    expect(() => (<GridLayoutComponent
+    expect(() => (<GridLayout
         layout={layout}
       >
         { children }
-      </GridLayoutComponent>
+      </GridLayout>
     )).to.throw();
   });
 });

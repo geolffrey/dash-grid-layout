@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactGridLayout from 'react-grid-layout';
 
-import './GridLayoutComponent.css';
+import './GridLayout.css';
 
-class GridLayoutComponent extends Component {
+class GridLayout extends Component {
   /**
    * By default, Dash wraps children in an element, obfuscating the key.
    * If a child has no key, this function npacks the children so that `key`
@@ -56,7 +56,7 @@ class GridLayoutComponent extends Component {
   }
 }
 
-GridLayoutComponent.propTypes = {
+GridLayout.propTypes = {
   /**
    * The ID used to identify the component in Dash callbacks
    */
@@ -195,7 +195,7 @@ GridLayoutComponent.propTypes = {
   setProps: PropTypes.func
 };
 
-GridLayoutComponent.defaultProps = {
+GridLayout.defaultProps = {
   width: 1200,
   autoSize: true,
   cols: 12,
@@ -212,4 +212,4 @@ GridLayoutComponent.defaultProps = {
   preventCollision: false
 };
 
-export default GridLayoutComponent;
+export default GridLayout;
