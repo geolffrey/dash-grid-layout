@@ -8,14 +8,24 @@ app.scripts.config.serve_locally = True
 
 app.layout = dash_grid_layout.GridLayout(
     [
-        html.Div('Hello', key=0),
-        html.Div('World', key=1)
+        dash_grid_layout.GridItem('Hello world', key='1', **{
+                'data-grid': {
+                    'x': 1,
+                    'y': 0,
+                    'w': 3,
+                    'h': 1
+                }
+            }),
+        dash_grid_layout.GridItem('Hello world', key='2', **{
+                'data-grid': {
+                    'x': 2,
+                    'y': 1,
+                    'w': 1,
+                    'h': 1
+                }
+            }),
     ],
-    cols=2,
-    layout=[
-        { 'x': 0, 'y': 0, 'w': 1, 'h': 1, 'i': '0' },
-        { 'x': 1, 'y': 0, 'w': 1, 'h': 1, 'i': '1' }
-    ]
+    cols=4
 )
 
 if __name__ == '__main__':

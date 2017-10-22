@@ -24,6 +24,7 @@ class GridLayout extends Component {
 
   render() {
     const children = this.unpackChildren(this.props.children);
+    window.console.log(children);
 
     return (
       <ReactGridLayout
