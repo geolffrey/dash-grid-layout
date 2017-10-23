@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactGridLayout from 'react-grid-layout';
 
+import {gridItemWrapper} from '../utils/utils.js';
+
 import './GridLayout.css';
 
 class GridLayout extends Component {
@@ -22,9 +24,24 @@ class GridLayout extends Component {
     return children;
   }
 
+  /**
+   * Wrap children inside a wrapper that conforms to react-grid-layout
+   */
+  wrapChildren(children) {
+    if(children) {
+      if(Array.isArray(children)) {
+        return children.map(gridItemWrapper);
+      } else {
+        return gridItemWrapper(children);
+      }
+    }
+
+    return children;
+  }
+
   render() {
-    const children = this.unpackChildren(this.props.children);
-    window.console.log(children);
+    const unpackedChildren = this.unpackChildren(this.props.children);
+    const wrappedChildren = this.wrapChildren(unpackedChildren);
 
     return (
       <ReactGridLayout
@@ -51,7 +68,7 @@ class GridLayout extends Component {
         onResize={this.props.onResize}
         onResizeStop={this.props.onResizeStop}
       >
-      { children }
+      { wrappedChildren }
       </ReactGridLayout>
     );
   }
