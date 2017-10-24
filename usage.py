@@ -1,5 +1,6 @@
 import dash_grid_layout as dgl
 import dash
+from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
 
@@ -7,9 +8,9 @@ app = dash.Dash('')
 
 app.scripts.config.serve_locally = True
 
-app.layout = dgl.GridLayout(
+app.layout = html.Div([
+    dgl.GridLayout(
         [
-            dgl.GridItem('Hello World', i=1),
             dgl.GridItem(
                 [
                     dcc.Graph(
@@ -41,7 +42,13 @@ app.layout = dgl.GridLayout(
                             }
                         )
                     ],
-                i=2,
+                i='2',
+                layout={
+                    'x': 1,
+                    'y': 1,
+                    'w': 2,
+                    'h': 1
+                }
                 ),
             dgl.GridItem(
                 [
@@ -64,12 +71,21 @@ app.layout = dgl.GridLayout(
                         ),
 
                     ],
-                i=3
-                )
+                i='3',
+                layout={
+                    'x': 1,
+                    'y': 2,
+                    'w': 2,
+                    'h': 1
+                }
+                ),
             ],
-        cols=2,
+        id='grid-layout',
+        cols=3,
         rowHeight=300
-        )
+        ),
+        html.Div(id='hidden-div', style={'display': 'none'}),
+        ])
 
 if __name__ == '__main__':
     app.run_server(debug=True)

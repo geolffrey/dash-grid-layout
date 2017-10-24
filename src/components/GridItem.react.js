@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 
 /**
@@ -7,6 +7,9 @@ import PropTypes from 'prop-types';
  * the layout will render incorrectly
  */
 class GridItem extends Component {
+  componentDidUpdate() {
+    window.console.log('Component updated');
+  }
   /**
    * Upon mounting the component, perform a relayout on
    * Plotly components
@@ -65,7 +68,7 @@ GridItem.propTypes = {
    * the component in pure React (as opposed to via Dash), both `i` and `key`
    * must be specified
    */
-  i: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  i: PropTypes.string.isRequired,
 
   /**
    * A list of child elements to place inside the grid ite,

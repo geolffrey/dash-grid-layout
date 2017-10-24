@@ -7,6 +7,14 @@ import utils from '../utils/utils';
 import './GridLayout.css';
 
 class GridLayout extends Component {
+  constructor(props) {
+    super(props);
+
+    // Bind `this` to functions so that they can be
+    // passed as callbacks without scoping issues
+    this.onResizeStop = this.onResizeStop.bind(this);
+  }
+
   /**
    * By default, Dash wraps children in an element, obfuscating the key.
    * If a child has no key, this function npacks the children so that `key`
@@ -39,8 +47,14 @@ class GridLayout extends Component {
     return children;
   }
 
+  /**
+   * Callback for the onResizeStop event
+   * Forces the children to relayout
+   */
+  onResizeStop(layout, oldItem, newItem) {
+  }
+
   render() {
-    window.console.log(this.props);
     const unpackedChildren = this.unpackChildren(this.props.children);
     const wrappedChildren = this.wrapChildren(unpackedChildren);
 
@@ -54,7 +68,6 @@ class GridLayout extends Component {
         draggableHandle={this.props.draggableHandle}
         verticalCompact={this.props.verticalCompact}
         compactType={this.props.compactType}
-        layout={this.props.layout}
         margin={this.props.margin}
         containerPadding={this.props.containerPadding}
         isDraggable={this.props.isDraggable}
@@ -67,7 +80,7 @@ class GridLayout extends Component {
         onDragStop={this.props.onDragStop}
         onResizeStart={this.props.onResizeStart}
         onResize={this.props.onResize}
-        onResizeStop={this.props.onResizeStop}
+        onResizeStop={this.onResizeStop}
       >
       { wrappedChildren }
       </ReactGridLayout>
