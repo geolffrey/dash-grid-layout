@@ -18,13 +18,12 @@ const gridItemWrapper = (gridItem) => {
 
   const {
     i,
-    layout,
-    children
+    layout
   } = gridItem.props;
 
   return (
     <div data-grid={layout} key={i}>
-      { children }
+      { gridItem }
     </div>
   );
 }

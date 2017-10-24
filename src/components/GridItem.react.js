@@ -7,6 +7,49 @@ import PropTypes from 'prop-types';
  * the layout will render incorrectly
  */
 class GridItem extends Component {
+  /**
+   * Upon mounting the component, perform a relayout on
+   * Plotly components
+   */
+  componentDidMount() {
+    // Relayout after a time period so that the rest of the layout can render properly
+    window.setTimeout(() => {
+      const children = this.props.children;
+
+      if(Array.isArray(children)) {
+        children.map(this.relayout);
+      } else if(children) {
+        this.relayout(children);
+      }
+    }, 200);
+  }
+
+  /**
+   * Relayout the Plotly objects; modify their sizes to fit inside the columns
+   */
+  relayout(child) {
+    if(child.props && child.props.id) {
+      const id = child.props.id;
+      const elem = document.getElementById(id);
+
+      if(elem) {
+        const parent = elem.parentElement.parentElement; //.react-grid-item
+
+        const update = {
+          width: parent.offsetWidth,
+          height: parent.offsetHeight
+        };
+
+        try {
+          window.Plotly.relayout(elem, update);
+        } catch(e) {
+          // Log the error
+          window.console.log(e);
+        }
+      }
+    }
+  }
+
   render() {
     return (
       <div>{ this.props.children }</div>

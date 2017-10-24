@@ -40,6 +40,7 @@ class GridLayout extends Component {
   }
 
   render() {
+    window.console.log(this.props);
     const unpackedChildren = this.unpackChildren(this.props.children);
     const wrappedChildren = this.wrapChildren(unpackedChildren);
 
