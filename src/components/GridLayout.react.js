@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactGridLayout from 'react-grid-layout';
 
-import {gridItemWrapper} from '../utils/utils.js';
+import utils from '../utils/utils';
 
 import './GridLayout.css';
 
@@ -30,9 +30,9 @@ class GridLayout extends Component {
   wrapChildren(children) {
     if(children) {
       if(Array.isArray(children)) {
-        return children.map(gridItemWrapper);
+        return children.map(utils.gridItemWrapper);
       } else {
-        return gridItemWrapper(children);
+        return utils.gridItemWrapper(children);
       }
     }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import GridItem from '../components/GridItem.react';
 
 /**
  * A wrapper function for GridItem
@@ -11,16 +12,18 @@ import React from 'react';
  * contain the necessary event handlers
  */
 const gridItemWrapper = (gridItem) => {
+  if(gridItem.type !== GridItem) {
+    throw new TypeError('Expected type GridItem, got type ' + gridItem.type);
+  }
+
   const {
+    i,
     layout,
     children
   } = gridItem.props;
 
-  const key = gridItem.key;
-
-
   return (
-    <div data-grid={layout} key={key}>
+    <div data-grid={layout} key={i}>
       { children }
     </div>
   );

@@ -16,9 +16,13 @@ class GridItem extends Component {
 
 GridItem.propTypes = {
   /**
-   * A key for identifying components. Used to improve rendering times
+   * An identifier for the component.
+   * Synonymous with `key`, but `key` cannot be specified as
+   * a PropType without causing errors. A caveat to this is that when using
+   * the component in pure React (as opposed to via Dash), both `i` and `key`
+   * must be specified
    */
-  key: PropTypes.string.isRequired,
+  i: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 
   /**
    * A list of child elements to place inside the grid ite,
@@ -82,7 +86,7 @@ GridItem.propTypes = {
     /**
      * If false, the element can not be resized
      */
-    isResizable: PropTypes.bool,
+    isResizable: PropTypes.bool
   }),
 
 

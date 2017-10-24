@@ -8,8 +8,8 @@ app.scripts.config.serve_locally = True
 
 app.layout = dash_grid_layout.GridLayout(
     [
-        dash_grid_layout.GridItem('Hello World', key='1'),
-        dash_grid_layout.GridItem('Hello World', key='2', layout={
+        dash_grid_layout.GridItem('Hello World', i=1),
+        dash_grid_layout.GridItem('Hello World', i=2, layout={
                 'x': 2,
                 'y': 4,
                 'h': 2,
