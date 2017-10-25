@@ -162,3 +162,242 @@ See the [dash-components-archetype][] repo for more information.
 [Builder]: https://github.com/FormidableLabs/builder
 [Dash]: https://github.com/plotly/dash2
 [dash-components-archetype]: https://github.com/plotly/dash-components-archetype
+
+# Component Documentation
+
+## GridLayout
+
+```
+{
+  /**
+   * The ID used to identify the component in Dash callbacks
+   */
+  id: PropTypes.string,
+
+  /**
+   * A list of renderable child elements, that will be placed inside the
+     grid
+   */
+  children: PropTypes.node,
+
+  /**
+   * The height, in pixels of a row in the grid
+   */
+  rowHeight: PropTypes.number,
+
+  /**
+   * The number of columns to display on the grid
+   */
+  cols: PropTypes.number,
+
+  /**
+   * The width, in pixels, of the grid
+   */
+  width: PropTypes.number,
+
+  /**
+   * If true, containers will automatically resize to fit the content
+   */
+  autoSize: PropTypes.bool,
+
+  /**
+   * CSS selector for tags that will not be draggable. Requires a
+     leading '.'
+   */
+  draggableCancel: PropTypes.string,
+
+  /**
+   * CSS selector for tags that will act as the draggable handle.
+     Requires a leading '.'
+   */
+  draggableHandle: PropTypes.string,
+
+  /**
+   * If true, the layout will compact vertically
+   */
+  verticalCompact: PropTypes.bool,
+
+  /**
+   * Compaction type.
+   * One of 'vertical' and 'horizontal'
+   */
+  compactType: PropTypes.oneOf(['vertical', 'horizontal']),
+
+  /**
+   * Array of objects with the format:
+   * { x: number, y: number, w: number, h: number }
+   * If custom keys are used, then an optional `i` parameter can
+   * be added that matches the key
+   */
+  layout: PropTypes.arrayOf(PropTypes.shape({
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+    w: PropTypes.number.isRequired,
+    h: PropTypes.number.isRequired,
+    i: PropTypes.Number
+  })),
+
+  /**
+   * Margin between items [x, y] in px
+   */
+  margin: PropTypes.arrayOf(PropTypes.number),
+
+  /**
+   * Padding inside the container [x, y] in px
+   */
+  containerPadding: PropTypes.arrayOf(PropTypes.number),
+
+  /**
+   * Elements can be dragged
+   */
+  isDraggable: PropTypes.bool,
+
+  /**
+   * Elements can be resized
+   */
+  isResizable: PropTypes.bool,
+
+  /**
+   * Use CSS transforms instead of Position. Improves performance if
+     switched on
+   */
+  useCSSTransforms: PropTypes.bool,
+
+  /**
+   * If true, grid items won't change position when being
+   * dragged over
+   */
+  preventCollision: PropTypes.bool,
+
+  /**
+   * Callback upon the layout changed
+   * @param layout: the layout
+   */
+  onLayoutChange: PropTypes.func,
+
+  /**
+   * Callback when dragging is started
+   */
+  onDragStart: PropTypes.func,
+
+  /**
+   * Callback upon each drag movement
+   */
+  onDrag: PropTypes.func,
+
+  /**
+   * Callback upon drag completion
+   */
+  onDragStop: PropTypes.func,
+
+  /**
+   * Calls when resize starts
+   */
+  onResizeStart: PropTypes.func,
+
+  /**
+   * Calls when resize movement happens
+   */
+  onResize: PropTypes.func,
+
+  /**
+   * Calls when resize is complete
+   */
+  onResizeStop: PropTypes.func,
+
+  /**
+   * Dash-assigned callback that should be called whenever any of the
+     properties change
+   */
+  setProps: PropTypes.func
+}
+```
+
+## GridItem
+
+```
+{
+  /**
+   * An identifier for the component.
+   * Synonymous with `key`, but `key` cannot be specified as
+   * a PropType without causing errors. A caveat to this is that when
+     using
+   * the component in pure React (as opposed to via Dash), both `i` and
+     `key`
+   * must be specified
+   */
+  i: PropTypes.string.isRequired,
+
+  /**
+   * A list of child elements to place inside the grid ite,
+   */
+  children: PropTypes.node,
+
+  /**
+   * An object describing the layout of the element
+   */
+  layout: PropTypes.shape({
+    /**
+     * The x-value of the element location, in grid units
+     */
+    x: PropTypes.number.isRequired,
+
+    /**
+     * The y-value of the element location, in grid units
+     */
+    y: PropTypes.number.isRequired,
+
+    /**
+     * The width of the element, in grid units
+     */
+    w: PropTypes.number.isRequired,
+
+    /**
+     * The height of the element, in grid units
+     */
+    h: PropTypes.number.isRequired,
+
+    /**
+     * The minimum width of the element, in grid units
+     */
+    minW: PropTypes.number,
+
+    /**
+     * The maximum width of the element, in grid units
+     */
+    maxW: PropTypes.number,
+
+    /**
+     * The minimum height of the element, in grid units
+     */
+    minH: PropTypes.number,
+
+    /**
+     * The maximum height of the element, in grid units
+     */
+    maxH: PropTypes.number,
+
+    /**
+     * Is static: if true, the element is not resizable or draggable
+     */
+    static: PropTypes.bool,
+
+    /**
+     * If false, element can not be dragged
+     */
+    isDraggable: PropTypes.bool,
+
+    /**
+     * If false, the element can not be resized
+     */
+    isResizable: PropTypes.bool
+  }),
+
+
+  /**
+   * Dash-assigned callback that should be called whenever any of the
+     properties change
+   */
+  setProps: PropTypes.func
+}
+```
