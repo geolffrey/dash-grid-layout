@@ -15,8 +15,9 @@ describe('GridLayout', () => {
     const children = [];
 
     for(let i = 0; i < len; i++) {
+      let k = String(i);
       children[i] = (
-        <GridItem i={i} key={i}>Test</GridItem>
+        <GridItem i={k} key={k}>Test</GridItem>
       );
     }
 
@@ -32,8 +33,8 @@ describe('GridLayout', () => {
 
   it('Renders when a correct layout array is provided', () => {
     const children = [
-      (<GridItem i={1} key={1}>Test</GridItem>),
-      (<GridItem i={2} key={2}>Test</GridItem>)
+      (<GridItem i='1' key='1'>Test</GridItem>),
+      (<GridItem i='2' key='2'>Test</GridItem>)
     ];
     const layout = [
       { x: 1, y: 1, w: 3, h: 1 },
@@ -53,8 +54,8 @@ describe('GridLayout', () => {
 
   it('Does not render when an incorrect layout is provided', () => {
     const children = [
-      (<GridItem i={1}>Test</GridItem>),
-      (<GridItem i={2}>Test</GridItem>)
+      (<GridItem i='1'>Test</GridItem>),
+      (<GridItem i='2'>Test</GridItem>)
     ];
     const layout = [
       { wrong: 1, y: 1, w: 3, h: 1 },

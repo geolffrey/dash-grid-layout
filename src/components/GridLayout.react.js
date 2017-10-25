@@ -15,7 +15,7 @@ class GridLayout extends Component {
     this.onLayoutChange = this.onLayoutChange.bind(this);
 
     this.state = {
-      layout: props.layout,
+      layout: props.layout
     };
   }
 
@@ -54,7 +54,7 @@ class GridLayout extends Component {
   /**
    * Callback for the onLayoutChange
    */
-  onLayoutChange(layout, oldItem, newItem) {
+  onLayoutChange(layout) {
     this.setState({
       layout: layout
     });

@@ -21,8 +21,9 @@ const gridItemWrapper = (gridItem, newLayout) => {
     layout
   } = gridItem.props;
 
-  newLayout = (newLayout || []);
-  const updatedLayout = (newLayout.find(x => x.i === i) || layout);
+  newLayout = (newLayout || new Array());
+  let updatedLayout = Object.assign({}, (newLayout.find(x => x.i === i) || layout));
+  updatedLayout.i = i;
 
   return (
     <div data-grid={updatedLayout} key={i}>
