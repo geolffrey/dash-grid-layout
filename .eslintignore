@@ -1,4 +1,5 @@
 build/
+__tests__/
 config/
 coverage/
 dist/

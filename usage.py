@@ -1,22 +1,91 @@
-import dash_grid_layout
+import dash_grid_layout as dgl
 import dash
+from dash.dependencies import Input, Output
+import dash_core_components as dcc
 import dash_html_components as html
 
 app = dash.Dash('')
 
 app.scripts.config.serve_locally = True
 
-app.layout = dash_grid_layout.GridLayoutComponent(
-    [
-        html.Div('Hello', key=0),
-        html.Div('World', key=1)
-    ],
-    cols=2,
-    layout=[
-        { 'x': 0, 'y': 0, 'w': 1, 'h': 1, 'i': '0' },
-        { 'x': 1, 'y': 0, 'w': 1, 'h': 1, 'i': '1' }
-    ]
-)
+app.layout = html.Div([
+    dgl.GridLayout(
+        [
+            dgl.GridItem(
+                [
+                    dcc.Graph(
+                        id='basic-chart',
+                        figure={
+                            'data': [
+                                {
+                                    'x': [1, 2, 3, 4],
+                                    'y': [4, 1, 3, 5],
+                                    'text': ['a', 'b', 'c', 'd'],
+                                    'customdata': ['c.a', 'c.b', 'c.c', 'c.d'],
+                                    'name': 'Trace 1',
+                                    'mode': 'markers',
+                                    'marker': {'size': 12}
+                                    },
+                                {
+                                    'x': [1, 2, 3, 4],
+                                    'y': [9, 4, 1, 4],
+                                    'text': ['w', 'x', 'y', 'z'],
+                                    'customdata': ['c.w', 'c.x', 'c.y', 'c.z'],
+                                    'name': 'Trace 2',
+                                    'mode': 'markers',
+                                    'marker': {'size': 12}
+                                    }
+                                ]
+                            },
+                        config={
+                            'autosizable': True
+                            }
+                        )
+                    ],
+                i='2',
+                layout={
+                    'x': 0,
+                    'y': 1,
+                    'w': 3,
+                    'h': 2
+                    }
+                ),
+            dgl.GridItem(
+                [
+                    dcc.Graph(
+                        id='example-graph',
+                        figure={
+                            'data':                                                     [
+                                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': 'SF'},
+                                {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'bar', 'name': u'Montréal'},
+                                ],
+                            'layout': {
+                                'title': 'Dash Data Visualization'
+                                }
+                            },
+                        config={
+                            'autosizable': True,
+                            'doubleClick': 'autosize',
+                            'frameMargins': 0,
+                            },
+                        ),
+
+                    ],
+                i='3',
+                layout={
+                    'x': 0,
+                    'y': 2,
+                    'w': 3,
+                    'h': 2,
+                    }
+                ),
+            ],
+        id='grid-layout',
+        cols=4,
+        rowHeight=300
+        ),
+        html.Div(id='hidden-div', style={'display': 'none'}),
+        ])
 
 if __name__ == '__main__':
     app.run_server(debug=True)

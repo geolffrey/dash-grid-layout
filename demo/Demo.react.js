@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {GridLayoutComponent} from '../src';
+import {GridLayout} from '../src';
 
 class Demo extends Component {
     constructor() {
@@ -16,7 +16,7 @@ class Demo extends Component {
 
                 <hr/>
                 <h2>ExampleComponent</h2>
-                <GridLayoutComponent
+                <GridLayout
                   layout={
                    [
                     { x: 1, y: 1, h: 1, w: 1 },
@@ -25,7 +25,7 @@ class Demo extends Component {
                   }>
                   <div key={1}>Test</div>
                   <div key={2}>Test</div>
-                </GridLayoutComponent>
+                </GridLayout>
                 <hr/>
             </div>
         );

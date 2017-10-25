@@ -2,9 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactGridLayout from 'react-grid-layout';
 
-import './GridLayoutComponent.css';
+import utils from '../utils/utils';
 
-class GridLayoutComponent extends Component {
+import './GridLayout.css';
+
+class GridLayout extends Component {
+  constructor(props) {
+    super(props);
+
+    // Bind `this` to functions so that they can be
+    // passed as callbacks without scoping issues
+    this.onLayoutChange = this.onLayoutChange.bind(this);
+
+    this.state = {
+      layout: props.layout
+    };
+  }
+
   /**
    * By default, Dash wraps children in an element, obfuscating the key.
    * If a child has no key, this function npacks the children so that `key`
@@ -22,8 +36,33 @@ class GridLayoutComponent extends Component {
     return children;
   }
 
+  /**
+   * Wrap children inside a wrapper that conforms to react-grid-layout
+   */
+  wrapChildren(children) {
+    if(children) {
+      if(Array.isArray(children)) {
+        return children.map(child => utils.gridItemWrapper(child, this.state.layout));
+      } else {
+        return utils.gridItemWrapper(children, this.state.layout);
+      }
+    }
+
+    return children;
+  }
+
+  /**
+   * Callback for the onLayoutChange
+   */
+  onLayoutChange(layout) {
+    this.setState({
+      layout: layout
+    });
+  }
+
   render() {
-    const children = this.unpackChildren(this.props.children);
+    const unpackedChildren = this.unpackChildren(this.props.children);
+    const wrappedChildren = this.wrapChildren(unpackedChildren);
 
     return (
       <ReactGridLayout
@@ -35,14 +74,13 @@ class GridLayoutComponent extends Component {
         draggableHandle={this.props.draggableHandle}
         verticalCompact={this.props.verticalCompact}
         compactType={this.props.compactType}
-        layout={this.props.layout}
         margin={this.props.margin}
         containerPadding={this.props.containerPadding}
         isDraggable={this.props.isDraggable}
         isResizable={this.props.isResizable}
         useCSSTransforms={this.props.useCSSTransforms}
         preventCollision={this.props.preventCollision}
-        onLayoutChange={this.props.onLayoutChange}
+        onLayoutChange={this.onLayoutChange}
         onDragStart={this.props.onDragStart}
         onDrag={this.props.onDrag}
         onDragStop={this.props.onDragStop}
@@ -50,13 +88,13 @@ class GridLayoutComponent extends Component {
         onResize={this.props.onResize}
         onResizeStop={this.props.onResizeStop}
       >
-      { children }
+      { wrappedChildren }
       </ReactGridLayout>
     );
   }
 }
 
-GridLayoutComponent.propTypes = {
+GridLayout.propTypes = {
   /**
    * The ID used to identify the component in Dash callbacks
    */
@@ -195,7 +233,7 @@ GridLayoutComponent.propTypes = {
   setProps: PropTypes.func
 };
 
-GridLayoutComponent.defaultProps = {
+GridLayout.defaultProps = {
   width: 1200,
   autoSize: true,
   cols: 12,
@@ -212,4 +250,4 @@ GridLayoutComponent.defaultProps = {
   preventCollision: false
 };
 
-export default GridLayoutComponent;
+export default GridLayout;

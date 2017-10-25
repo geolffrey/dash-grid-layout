@@ -26,6 +26,7 @@ module.exports = function (config) {
         files: [
             // Sinon has issues with webpack. Do global include.
             require('dash-components-archetype-dev/require').resolve('sinon/pkg/sinon'),
+            '../../node_modules/phantomjs-polyfill-find/find-polyfill.js',
 
             // Test bundle (created via local webpack-dev-server in this config).
             MAIN_PATH
