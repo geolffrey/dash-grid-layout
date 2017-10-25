@@ -401,3 +401,5 @@ See the [dash-components-archetype][] repo for more information.
   setProps: PropTypes.func
 }
 ```
+
+See `usage.py` for example usage
