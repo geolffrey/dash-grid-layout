@@ -1,6 +1,8 @@
 /* eslint-disable import/prefer-default-export */
-import ExampleComponent from './components/ExampleComponent.react';
+import GridLayout from './components/GridLayout.react';
+import GridItem from './components/GridItem.react';
 
 export {
-    ExampleComponent
+    GridLayout,
+    GridItem
 };

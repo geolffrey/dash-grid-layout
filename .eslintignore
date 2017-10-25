@@ -1,4 +1,6 @@
 build/
+__tests__/
+config/
 coverage/
 dist/
 lib/
@@ -13,4 +15,3 @@ venv/
 *.egg-info
 *.log
 .DS_Store
-package-lock.json
