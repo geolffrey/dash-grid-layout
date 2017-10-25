@@ -12,7 +12,11 @@ class GridLayout extends Component {
 
     // Bind `this` to functions so that they can be
     // passed as callbacks without scoping issues
-    this.onResizeStop = this.onResizeStop.bind(this);
+    this.onLayoutChange = this.onLayoutChange.bind(this);
+
+    this.state = {
+      layout: props.layout,
+    };
   }
 
   /**
@@ -38,9 +42,9 @@ class GridLayout extends Component {
   wrapChildren(children) {
     if(children) {
       if(Array.isArray(children)) {
-        return children.map(utils.gridItemWrapper);
+        return children.map(child => utils.gridItemWrapper(child, this.state.layout));
       } else {
-        return utils.gridItemWrapper(children);
+        return utils.gridItemWrapper(children, this.state.layout);
       }
     }
 
@@ -48,10 +52,12 @@ class GridLayout extends Component {
   }
 
   /**
-   * Callback for the onResizeStop event
-   * Forces the children to relayout
+   * Callback for the onLayoutChange
    */
-  onResizeStop(layout, oldItem, newItem) {
+  onLayoutChange(layout, oldItem, newItem) {
+    this.setState({
+      layout: layout
+    });
   }
 
   render() {
@@ -74,13 +80,13 @@ class GridLayout extends Component {
         isResizable={this.props.isResizable}
         useCSSTransforms={this.props.useCSSTransforms}
         preventCollision={this.props.preventCollision}
-        onLayoutChange={this.props.onLayoutChange}
+        onLayoutChange={this.onLayoutChange}
         onDragStart={this.props.onDragStart}
         onDrag={this.props.onDrag}
         onDragStop={this.props.onDragStop}
         onResizeStart={this.props.onResizeStart}
         onResize={this.props.onResize}
-        onResizeStop={this.onResizeStop}
+        onResizeStop={this.props.onResizeStop}
       >
       { wrappedChildren }
       </ReactGridLayout>

@@ -44,11 +44,11 @@ app.layout = html.Div([
                     ],
                 i='2',
                 layout={
-                    'x': 1,
+                    'x': 0,
                     'y': 1,
-                    'w': 2,
-                    'h': 1
-                }
+                    'w': 3,
+                    'h': 2
+                    }
                 ),
             dgl.GridItem(
                 [
@@ -73,15 +73,15 @@ app.layout = html.Div([
                     ],
                 i='3',
                 layout={
-                    'x': 1,
+                    'x': 0,
                     'y': 2,
-                    'w': 2,
-                    'h': 1
-                }
+                    'w': 3,
+                    'h': 2,
+                    }
                 ),
             ],
         id='grid-layout',
-        cols=3,
+        cols=4,
         rowHeight=300
         ),
         html.Div(id='hidden-div', style={'display': 'none'}),
@@ -89,4 +89,3 @@ app.layout = html.Div([
 
 if __name__ == '__main__':
     app.run_server(debug=True)
-    children

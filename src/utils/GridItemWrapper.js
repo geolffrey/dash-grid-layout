@@ -11,7 +11,7 @@ import GridItem from '../components/GridItem.react';
  * In the future, this plain div will be replaced with a GridItemProxy component, that will
  * contain the necessary event handlers
  */
-const gridItemWrapper = (gridItem) => {
+const gridItemWrapper = (gridItem, newLayout) => {
   if(gridItem.type !== GridItem) {
     throw new TypeError('Expected type GridItem, got type ' + gridItem.type);
   }
@@ -21,9 +21,12 @@ const gridItemWrapper = (gridItem) => {
     layout
   } = gridItem.props;
 
+  newLayout = (newLayout || []);
+  const updatedLayout = (newLayout.find(x => x.i === i) || layout);
+
   return (
-    <div data-grid={layout} key={i}>
-      { gridItem }
+    <div data-grid={updatedLayout} key={i}>
+      { React.cloneElement(gridItem, { layout: updatedLayout }) }
     </div>
   );
 }

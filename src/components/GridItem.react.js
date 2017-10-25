@@ -8,22 +8,20 @@ import PropTypes from 'prop-types';
  */
 class GridItem extends Component {
   componentDidUpdate() {
-    window.console.log('Component updated');
+    this.relayoutChildren();
   }
-  /**
-   * Upon mounting the component, perform a relayout on
-   * Plotly components
-   */
+
   componentDidMount() {
+    this.relayoutChildren();
+  }
+
+  /**
+   * Iterate over children and trigger a relayout event
+   */
+  relayoutChildren() {
     // Relayout after a time period so that the rest of the layout can render properly
     window.setTimeout(() => {
-      const children = this.props.children;
-
-      if(Array.isArray(children)) {
-        children.map(this.relayout);
-      } else if(children) {
-        this.relayout(children);
-      }
+      React.Children.map(this.props.children, this.relayout);
     }, 200);
   }
 
