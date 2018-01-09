@@ -55,9 +55,13 @@ class GridLayout extends Component {
    * Callback for the onLayoutChange
    */
   onLayoutChange(layout) {
-    this.setState({
-      layout: layout
-    });
+    if(this.props.setProps) {
+      this.props.setProps({layout: layout});
+    } else {
+      this.setState({
+        layout: layout
+      });  
+    }
   }
 
   render() {
