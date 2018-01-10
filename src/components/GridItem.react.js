@@ -36,9 +36,14 @@ class GridItem extends Component {
       if(elem) {
         const parent = elem.parentElement.parentElement; //.react-grid-item
 
+        let height = parent.offsetHeight;
+        if (Array.isArray(this.props.children)) {
+          height /= this.props.children.length;
+        }
+
         const update = {
           width: parent.offsetWidth,
-          height: parent.offsetHeight
+          height: height
         };
 
         try {

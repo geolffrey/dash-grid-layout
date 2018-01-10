@@ -1,6 +1,6 @@
 {
 	"name": "dash-grid-layout",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "Dash UI Component for using the React Grid Layout library",
 	"main": "lib/index.js",
 	"repository": {
