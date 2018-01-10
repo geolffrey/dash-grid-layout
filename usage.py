@@ -3,7 +3,6 @@ import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
-import dash_widget_component as dwc
 
 app = dash.Dash('')
 
@@ -41,28 +40,7 @@ app.layout = html.Div([
                         config={
                             'autosizable': True
                             }
-                        ),
-                        dwc.Widget(type='global',
-                            filters=[
-                            {
-                                'name': 'filter1',
-                                'values': [
-                                    'value1',
-                                    'value2',
-                                    'value3',
-                                    ],
-                                'default': 'value1'
-                            },
-                            {
-                                'name': 'filter2',
-                                'values': [
-                                    'value4',
-                                    'value5',
-                                    'value6',
-                                ],
-                                'default': 'value4'
-                            },
-                            ])
+                        )
                     ],
                 i='2',
                 layout={
