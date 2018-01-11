@@ -3,10 +3,34 @@ import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_widget_component as dwc
 
+filters=[
+    {
+        'name': 'filter1',
+        'values': [
+            'value1',
+            'value2',
+            'value3',
+        ],
+        'default': 'value1'
+    },
+    {
+        'name': 'filter2',
+        'values': [
+            'value4',
+            'value5',
+            'value6',
+        ],
+        'default': 'value4'
+    },
+]
 app = dash.Dash('')
 
 app.scripts.config.serve_locally = True
+app.css.append_css({
+    "external_url": "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css"
+})
 
 app.layout = html.Div([
     dgl.GridLayout(
@@ -40,14 +64,15 @@ app.layout = html.Div([
                         config={
                             'autosizable': True
                             }
-                        )
+                        ),
+                        dwc.Widget(type='global',filters=filters)
                     ],
                 i='2',
                 layout={
                     'x': 0,
                     'y': 1,
-                    'w': 3,
-                    'h': 2
+                    'w': 2,
+                    'h': 1
                     }
                 ),
             dgl.GridItem(
@@ -69,14 +94,15 @@ app.layout = html.Div([
                             'frameMargins': 0,
                             },
                         ),
+                    html.Div('Hello World')
 
                     ],
                 i='3',
                 layout={
                     'x': 0,
-                    'y': 2,
-                    'w': 3,
-                    'h': 2,
+                    'y': 1,
+                    'w': 2,
+                    'h': 1,
                     }
                 ),
             ],

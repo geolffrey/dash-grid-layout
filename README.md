@@ -392,7 +392,12 @@ See the [dash-components-archetype][] repo for more information.
      */
     isResizable: PropTypes.bool
   }),
-
+  
+  /**
+   * A decimal representing the amount of space within the GridItem that a Plotly
+   * chart should fill, if there are other elements within the GridItem
+   */
+  chartSize: PropTypes.number,
 
   /**
    * Dash-assigned callback that should be called whenever any of the
