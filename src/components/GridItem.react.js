@@ -7,6 +7,11 @@ import PropTypes from 'prop-types';
  * the layout will render incorrectly
  */
 class GridItem extends Component {
+  constructor(props) {
+    super(props);
+    this.relayout = this.relayout.bind(this);
+  }
+
   componentDidUpdate() {
     this.relayoutChildren();
   }
@@ -37,8 +42,11 @@ class GridItem extends Component {
         const parent = elem.parentElement.parentElement; //.react-grid-item
 
         let height = parent.offsetHeight;
-        if (Array.isArray(this.props.children)) {
-          height /= this.props.children.length;
+
+        // If there are other elements in the GridItem, don't allow the
+        // Plotly chart to completely fill the space
+        if (Array.isArray(this.props.children) && this.props.children.length > 1) {
+          height = height * this.props.chartSize;
         }
 
         const update = {
@@ -138,11 +146,20 @@ GridItem.propTypes = {
     isResizable: PropTypes.bool
   }),
 
+  /**
+   * A decimal representing the amount of space within the GridItem that a Plotly
+   * chart should fill, if there are other elements within the GridItem
+   */
+  chartSize: PropTypes.number,
 
   /**
    * Dash-assigned callback that should be called whenever any of the properties change
    */
   setProps: PropTypes.func
+};
+
+GridItem.defaultProps = {
+  chartSize: 2/3
 };
 
 export default GridItem;
