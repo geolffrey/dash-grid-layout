@@ -60,7 +60,7 @@ class GridLayout extends Component {
     } else {
       this.setState({
         layout: layout
-      });  
+      });
     }
   }
 
