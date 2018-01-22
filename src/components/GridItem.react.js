@@ -12,8 +12,20 @@ class GridItem extends Component {
     this.relayout = this.relayout.bind(this);
   }
 
-  componentDidUpdate() {
-    this.relayoutChildren();
+  componentDidUpdate(prevProps) {
+    let updated = false;
+    // Ensure that the layout has in fact changed before calling relayout
+    const keys = ['w','h','x','y'];
+
+    for (let key of keys) {
+      if(this.props.layout[key] !== prevProps.layout[key]) {
+        updated = true;
+      }
+    }
+
+    if (updated) {
+      this.relayoutChildren();
+    }
   }
 
   componentDidMount() {
@@ -27,7 +39,7 @@ class GridItem extends Component {
     // Relayout after a time period so that the rest of the layout can render properly
     window.setTimeout(() => {
       React.Children.map(this.props.children, this.relayout);
-    }, 200);
+    }, 500);
   }
 
   /**
